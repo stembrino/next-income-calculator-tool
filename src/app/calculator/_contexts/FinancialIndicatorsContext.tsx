@@ -1,6 +1,6 @@
 "use client"
 
-import { fetchCDI, fetchSelic } from '@/api/investment-service';
+import { getApi } from '@/service/request';
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
 type FinancialIndicatorsContextType = {
@@ -33,7 +33,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateCDI = async (): Promise<boolean> => {
     setIsLoading(true);
     try {
-      const cdi = await fetchCDI();
+      const cdi = await getApi("cdi");
       setCDI(cdi)
     } catch {
       return false;
@@ -46,7 +46,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateSelic = async (): Promise<boolean> => {
     setIsLoading(true);
     try {
-      const selic = await fetchSelic();
+      const selic = await getApi("selic");
       console.log("🚀 ~ updateSelic ~ selic:", selic)
       setSelic(selic)
     } catch {
@@ -60,7 +60,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateGovSaving = async (): Promise<boolean> => {
     setIsLoading(true);
     try {
-      const govSaving = await fetchSelic();
+      const govSaving = await getApi("gov-saving");
       setGovSaving(govSaving)
     } catch {
       return false;
@@ -79,12 +79,9 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     return true;
   }
 
-  // useEffect(() => {
-  //   updateAllIndicators();
-  //   console.log("🚀 ~ useEffect ~ cdi:", cdi)
-  //   console.log("🚀 ~ useEffect ~ selic:", selic)
-  //   console.log("🚀 ~ useEffect ~ govSaving:", govSaving)
-  // }, []);
+  useEffect(() => {
+    updateAllIndicators();
+  }, []);
 
   const contextValue: FinancialIndicatorsContextType = {
     cdi,
