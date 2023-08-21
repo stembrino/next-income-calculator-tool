@@ -1,5 +1,5 @@
 import { CalculatorArea } from '@/app/calculator/_components/CalculatorArea'
-import { FinancialIndicatorsProvider } from '@/app/calculator/_contexts/FinancialIndicatorsContext'
+import { FinancialIndicatorsProvider } from '@/contexts/FinancialIndicatorsContext'
 
 export default function Home() {
   return (

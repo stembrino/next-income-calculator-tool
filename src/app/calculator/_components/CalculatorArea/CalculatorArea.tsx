@@ -1,4 +1,4 @@
-import { useFinancialIndicators } from '@/app/calculator/_contexts/FinancialIndicatorsContext';
+import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext';
 import React, { FC } from 'react';
 
 const CalculatorArea: FC = ({ }) => {
