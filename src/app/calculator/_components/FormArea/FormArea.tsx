@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react';
 import FormAreaLayout from './FormAreaLayout/FormAreaLayout';
-import Input from '../Stateless/Input/Input';
+import CurrencyInput from '../Stateless/Inputs/CurrencyInput/CurrencyInput';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import { SiBuzzfeed } from 'react-icons/si';
+import PercentageInput from '../Stateless/Inputs/PercentualInput/PercentualInput';
+import PercentageGroupLayout from '../Stateless/Inputs/PercentualInput/PercentageGroupLayout/PercentageGroupLayout';
 
 
 
@@ -10,11 +12,14 @@ const FormArea: FC = () => {
   const [temp, setTemp] = useState(100)
   return (
     <FormAreaLayout>
-      <Input icon={<RiMoneyDollarCircleLine size={25} />} id='selic' label='Valor da Aplicação' onChange={(value: any) => { setTemp(value) }} value={temp} />
-      <Input icon={<RiMoneyDollarCircleLine size={25} />} id='selic' label='Valor da Aplicação' onChange={(value: any) => { setTemp(value) }} value={temp} />
-      <Input icon={<SiBuzzfeed size={22} />} id='selic' label='Taxa CDI' onChange={(value: any) => { setTemp(value) }} value={temp} />
-      <Input icon={<SiBuzzfeed size={22} />} id='selic' label='Selic' onChange={(value: any) => { setTemp(value) }} value={temp} />
-      <Input icon={<SiBuzzfeed size={22} />} id='selic' label='LCI/LCA' onChange={(value: any) => { setTemp(value) }} value={temp} />
+      <CurrencyInput icon={<RiMoneyDollarCircleLine size={25} />} id='selic' label='Valor da Aplicação' onChange={(value: any) => { setTemp(value) }} value={temp} />
+      <CurrencyInput icon={<RiMoneyDollarCircleLine size={25} />} id='selic' label='Valor da Aplicação' onChange={(value: any) => { setTemp(value) }} value={temp} />
+      <PercentageGroupLayout>
+        <PercentageInput label='Selic' value={temp} id='test' onChange={(value) => setTemp(value)} />
+        <PercentageInput label='Selic' value={temp} id='test' onChange={(value) => setTemp(value)} />
+        <PercentageInput label='Selic' value={temp} id='test' onChange={(value) => setTemp(value)} />
+        <PercentageInput label='Selic' value={temp} id='test' onChange={(value) => setTemp(value)} />
+      </PercentageGroupLayout>
     </FormAreaLayout>
   );
 };

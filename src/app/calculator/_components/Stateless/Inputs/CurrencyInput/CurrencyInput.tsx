@@ -1,5 +1,5 @@
-import React, { FC, useRef, ReactNode } from 'react';
-import CurrencyInput from 'react-currency-input-field';
+import React, { FC, ReactNode } from 'react';
+import CurrencyInputLib from 'react-currency-input-field';
 
 
 type InputProps = {
@@ -10,7 +10,7 @@ type InputProps = {
   onChange: (value: string, name?: string) => void;
 }
 
-const Input: FC<InputProps> = ({ id, value, label, icon, onChange }) => {
+const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, onChange }) => {
   const handleOnChange = (value?: string) => {
     if (!value) return;
     onChange(value);
@@ -21,7 +21,7 @@ const Input: FC<InputProps> = ({ id, value, label, icon, onChange }) => {
       <label htmlFor={id} className='font-semibold text-sm'>{label}</label>
       <div className='flex items-center'>
         {icon}
-        <CurrencyInput
+        <CurrencyInputLib
           intlConfig={{ locale: 'pt-Br', currency: 'BRL' }}
           id={id}
           value={value}
@@ -35,4 +35,4 @@ const Input: FC<InputProps> = ({ id, value, label, icon, onChange }) => {
   );
 };
 
-export default Input;
+export default CurrencyInput;
