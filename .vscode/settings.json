@@ -1,9 +1,10 @@
 {
-    "cSpell.words": [
-        "conteudo",
-        "Selic"
-    ],
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true
-    },
+  "cSpell.words": [
+    "conteudo",
+    "Selic"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.tabSize": 2
 }
