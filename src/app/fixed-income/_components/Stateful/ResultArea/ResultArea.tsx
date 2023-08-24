@@ -1,11 +1,11 @@
-import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext';
 import React, { FC, useState } from 'react';
 import ResultAreaLayout from './ResultAreaLayout/ResultAreaLayout';
 import { Info } from '../../Stateless/Card/types';
 import Card from '../../Stateless/Card/Card';
+import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
 
 const ResultArea: FC = () => {
-  // const { selic, cdi, govSaving } = useFinancialIndicators();
+  const { selic, cdi, govSaving } = useFinancialIndicators();
   const [counter, setCounter] = useState(30)
 
   const handleOnCLick = () => {
@@ -30,6 +30,9 @@ const ResultArea: FC = () => {
       {/* <button className='text-white' onClick={handleOnCLick}>Click Increase</button>
       <br />
       <button className='text-white' onClick={handleOnCLick02}>Click Decrease</button> */}
+      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
+      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
+      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
       <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
     </ResultAreaLayout>
   );

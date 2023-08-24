@@ -1,28 +1,10 @@
 "use client"
 
 import { getApi } from '@/service/request';
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
+import { FinancialIndicatorsContext, FinancialIndicatorsContextType } from './Context';
 
-type FinancialIndicatorsContextType = {
-  govSaving: number | null;
-  cdi: number | null;
-  selic: number | null;
-  isLoading: boolean;
-  updateCDI: () => Promise<boolean>;
-  updateSelic: () => Promise<boolean>;
-  updateGovSaving: () => Promise<boolean>;
-  updateAllIndicators: () => Promise<boolean>;
-};
 
-const FinancialIndicatorsContext = createContext<FinancialIndicatorsContextType | undefined>(undefined);
-
-export const useFinancialIndicators = () => {
-  const context = useContext(FinancialIndicatorsContext);
-  if (!context) {
-    throw new Error('useFinancialIndicators must be used within a FinancialIndicatorsProvider');
-  }
-  return context;
-};
 
 export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cdi, setCDI] = useState<number | null>(null);
@@ -80,7 +62,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   }
 
   useEffect(() => {
-    updateAllIndicators();
+    // updateAllIndicators();
   }, []);
 
   const contextValue: FinancialIndicatorsContextType = {
