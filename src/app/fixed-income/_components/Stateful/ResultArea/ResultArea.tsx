@@ -1,8 +1,8 @@
 import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext';
 import React, { FC, useState } from 'react';
-import Card from '../Stateless/Card/Card';
-import { Info } from '../Stateless/Card/types';
 import ResultAreaLayout from './ResultAreaLayout/ResultAreaLayout';
+import { Info } from '../../Stateless/Card/types';
+import Card from '../../Stateless/Card/Card';
 
 const ResultArea: FC = () => {
   // const { selic, cdi, govSaving } = useFinancialIndicators();

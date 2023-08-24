@@ -1,10 +1,9 @@
 import React, { FC, useState } from 'react';
 import FormAreaLayout from './FormAreaLayout/FormAreaLayout';
-import CurrencyInput from '../Stateless/Inputs/CurrencyInput/CurrencyInput';
 import { RiMoneyDollarCircleLine } from 'react-icons/ri';
-import { SiBuzzfeed } from 'react-icons/si';
-import PercentageInput from '../Stateless/Inputs/PercentualInput/PercentualInput';
-import PercentageGroupLayout from '../Stateless/Inputs/PercentualInput/PercentageGroupLayout/PercentageGroupLayout';
+import PercentageGroupLayout from '../../Stateless/Inputs/PercentageInput/PercentageGroupLayout/PercentageGroupLayout';
+import PercentageInput from '../../Stateless/Inputs/PercentageInput/PercentageInput';
+import CurrencyInput from '../../Stateless/Inputs/CurrencyInput/CurrencyInput';
 
 
 
