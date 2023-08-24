@@ -1,7 +1,3 @@
-"use client"
-
-import { CalculatorArea } from '@/app/calculator/_components/ResultArea'
-
 export default function Home() {
 
   return (

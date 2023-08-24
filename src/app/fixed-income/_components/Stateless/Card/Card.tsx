@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import PercentageBar from './PercentageBar/PercentageBar';
 import Tag from './Tag/Tag';
-import { Tailwindest } from 'tailwindest';
-import { CardProps, Info } from './types';
+import { CardProps } from './types';
 
 const Card: FC<CardProps> = ({ percentage = 50, title, info }) => {
 
