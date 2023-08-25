@@ -4,14 +4,10 @@ import { LiaPiggyBankSolid } from 'react-icons/lia';
 import PercentageGroupLayout from '../../Stateless/Inputs/PercentageInput/PercentageGroupLayout/PercentageGroupLayout';
 import PercentageInput from '../../Stateless/Inputs/PercentageInput/PercentageInput';
 import CurrencyInput from '../../Stateless/Inputs/CurrencyInput/CurrencyInput';
-import Button from '../../Stateless/Button/Button';
 import MonthInput from '../../Stateless/Inputs/MonthInput/MonthInput';
 import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
-import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
-import { FinanceForm } from './types';
 import { useFormArea } from './hooks/useFormArea';
 import Footer from './Footer/Footer';
-
 
 const FormArea: FC = () => {
   const { formStates, handleOnChange, handleOnClickCDI, handleOnClickSelic, handleSubmit } = useFormArea();
@@ -25,7 +21,7 @@ const FormArea: FC = () => {
             id='selic'
             name='initialValue'
             icon={<LiaPiggyBankSolid size={35} />}
-            label='Valor da Aplicação'
+            label='Initial Value'
             onChange={handleOnChange}
             value={formStates.initialValue} />
           <MonthInput name='period' label='Number of months' value={formStates.period} id='test' onChange={handleOnChange} />

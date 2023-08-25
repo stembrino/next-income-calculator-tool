@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { CalculatorAction, CalculationResultState } from './Reducer';
+import { CalculatorAction, CalculationResultState } from './Reducer/Reducer';
 
 export type CalculatorContextType = {
   calculatorState: CalculationResultState;

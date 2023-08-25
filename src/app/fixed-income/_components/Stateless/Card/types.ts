@@ -5,4 +5,5 @@ export type CardProps = {
   title: string;
   percentage: number;
   info: Info[];
+  period: number;
 }

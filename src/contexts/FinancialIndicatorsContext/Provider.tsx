@@ -73,6 +73,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     updateAllIndicators();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const contextValue: FinancialIndicatorsContextType = {

@@ -2,22 +2,30 @@ import React, { FC, useState } from 'react';
 import ResultAreaLayout from './ResultAreaLayout/ResultAreaLayout';
 import { Info } from '../../Stateless/Card/types';
 import Card from '../../Stateless/Card/Card';
-import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
 import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 
 const ResultArea: FC = () => {
-  const { selic, cdi, govSaving } = useFinancialIndicators();
-  const { calculatorState, calculatorDispatch } = useCalculator();
+  const { calculatorState } = useCalculator();
+  const formattedCurrency = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   const selicConfig: Info[] = [
-    { id: "1", ellipseColor: "bg-black", label: "Initial Value", value: calculatorState.selic.initialValue },
-    { id: "2", label: "Gross Result", value: calculatorState.selic.finalValue, ellipseColor: "bg-red-400" },
+    { id: "2", ellipseColor: "bg-black", label: "Initial value", value: calculatorState.selic.initialValue },
+    { id: "3", label: "Final value", value: calculatorState.selic.finalValue, ellipseColor: "bg-red-400" },
+    { id: "4", label: "Gross income", value: calculatorState.selic.result, ellipseColor: "bg-red-400" },
+  ]
+  const cdiConfig: Info[] = [
+    { id: "1", ellipseColor: "bg-black", label: "Initial value", value: calculatorState.cdi.initialValue },
+    { id: "2", label: "Final value", value: calculatorState.cdi.finalValue, ellipseColor: "bg-red-400" },
+    { id: "3", label: "Gross income", value: calculatorState.cdi.result, ellipseColor: "bg-red-400" },
   ]
 
   return (
     <ResultAreaLayout>
-      <Card info={selicConfig} title='SELIC' percentage={50} />
-      {/* <Card info={mock} title='CDI' percentage={50} /> */}
+      <Card period={calculatorState.selic.period} info={selicConfig} title='SELIC' percentage={50} />
+      <Card period={calculatorState.cdi.period} info={cdiConfig} title='CDI' percentage={50} />
     </ResultAreaLayout>
   );
 };
