@@ -6,14 +6,16 @@ type InputProps = {
   id: string;
   value: number;
   label: string;
+  name: string;
   icon?: ReactNode;
-  onChange: (value: string, name?: string) => void;
+  onChange: ({ name, value }: { value: number, name: string }) => void;
 }
 
-const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, onChange }) => {
+const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, name, onChange }) => {
   const handleOnChange = (value?: string) => {
     if (!value) return;
-    onChange(value);
+    const valueAsNumber = Number(value);
+    onChange({ value: valueAsNumber, name });
   }
 
   return (
@@ -22,6 +24,8 @@ const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, onChange }) => 
       <div className='flex items-center'>
         {icon}
         <CurrencyInputLib
+          allowDecimals={false}
+          name={name}
           intlConfig={{ locale: 'pt-Br', currency: 'BRL' }}
           id={id}
           value={value}

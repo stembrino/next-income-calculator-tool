@@ -1,8 +1,8 @@
 import { createContext } from 'react';
-import { CalculatorAction, CalculatorState } from './Reducer';
+import { CalculatorAction, CalculationResultState } from './Reducer';
 
 export type CalculatorContextType = {
-  calculatorState: CalculatorState;
+  calculatorState: CalculationResultState;
   calculatorDispatch: React.Dispatch<CalculatorAction>;
 };
 

@@ -1,24 +1,18 @@
 type CalculateParams = {
   initialValue: number;
   months: number;
-  financialIndicators: {
-    selic: number;
-  }
+  financialIndicator?: number
 }
 
-type FinancialCalculation = {
-  calculateSelic: (param: CalculateParams) => number
-}
+// M = C(1 + i)t
+// i: interest rate
+// C: initial value
+// t: time
+// M: final value
+export const calculateCompoundInterestRate = ({ financialIndicator: i, initialValue: C, months: t }: CalculateParams): number => {
+  if (!i) throw new Error("calculateCompoundInterestRate ~ calculateCompoundInterestRate:financialIndicator was not provided.");
+  i = i / 100;
+  const M = C * Math.pow(1 + i, t);
 
-export const financialCalculation = (calculateParams: CalculateParams): FinancialCalculation => {
-
-  const calculateSelic = () => {
-    console.log("🚀 ~ financialCalculation ~ calculateParams:", calculateParams)
-
-    return 0;
-  }
-
-  return {
-    calculateSelic
-  }
+  return M;
 }

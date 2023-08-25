@@ -3,11 +3,11 @@
 import { useReducer } from 'react';
 import React, { ReactNode } from 'react';
 import { CalculatorContext, CalculatorContextType } from './Context';
-import { CalculatorState, reducer } from './Reducer';
+import { CalculationResultState, reducer } from './Reducer';
 
 
 export const CalculatorProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const initialValue: CalculatorState = { finalValue: null };
+  const initialValue: CalculationResultState = { cdi: { finalValue: null }, selic: { finalValue: null } };
   const [calculatorState, calculatorDispatch] = useReducer(reducer, initialValue);
 
   const contextValue: CalculatorContextType = {
