@@ -3,37 +3,22 @@ import ResultAreaLayout from './ResultAreaLayout/ResultAreaLayout';
 import { Info } from '../../Stateless/Card/types';
 import Card from '../../Stateless/Card/Card';
 import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
+import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 
 const ResultArea: FC = () => {
   const { selic, cdi, govSaving } = useFinancialIndicators();
-  const [counter, setCounter] = useState(30)
+  const { calculatorState, calculatorDispatch } = useCalculator();
 
-  const handleOnCLick = () => {
-    setCounter((state) => state += 10)
-  }
-  const handleOnCLick02 = () => {
-    setCounter((state) => state -= 10)
-  }
-
-  const mock: Info[] = [
-    { id: "1", ellipseColor: "bg-black", label: "Valor investido", value: 100 },
-    { id: "2", label: "Valor Bruto", value: 30000, ellipseColor: "bg-red-400" },
+  const selicConfig: Info[] = [
+    { id: "1", ellipseColor: "bg-black", label: "Initial Value", value: calculatorState.selic.initialValue },
+    { id: "2", label: "Gross Result", value: calculatorState.selic.finalValue, ellipseColor: "bg-red-400" },
     { id: "3", label: "Impostos", value: 30000 }
   ]
 
   return (
     <ResultAreaLayout>
-      {/* SELIC:{selic}
-      CDI: {cdi}
-      GOV SAVING: {govSaving} */}
-
-      {/* <button className='text-white' onClick={handleOnCLick}>Click Increase</button>
-      <br />
-      <button className='text-white' onClick={handleOnCLick02}>Click Decrease</button> */}
-      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
-      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
-      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
-      <Card info={mock} title='SELIC' percentage={counter} /> {/* Adjust this value */}
+      <Card info={selicConfig} title='SELIC' percentage={50} />
+      {/* <Card info={mock} title='CDI' percentage={50} /> */}
     </ResultAreaLayout>
   );
 };
