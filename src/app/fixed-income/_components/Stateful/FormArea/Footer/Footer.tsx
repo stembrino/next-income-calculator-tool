@@ -12,11 +12,13 @@ const Footer: FC<FooterProps> = ({ onClickCDI, onClickSelic }) => {
   const { isIndicatorsLoading } = useFinancialIndicators();
 
   return (
-    <div className='ml-auto flex gap-4 items-center'>
+    <div className='ml-auto flex gap-3 items-center'>
       <p>calculate to:</p>
-      <Button type='button' disabled={isIndicatorsLoading} label='Selic' onClick={onClickSelic} />
-      <Button type='button' disabled={isIndicatorsLoading} label='CDI' onClick={onClickCDI} />
-      <Button type='submit' disabled={isIndicatorsLoading} label='All' />
+      <div className='flex gap-4 flex-wrap'>
+        <Button type='button' disabled={isIndicatorsLoading} label='Selic' onClick={onClickSelic} />
+        <Button type='button' disabled={isIndicatorsLoading} label='CDI' onClick={onClickCDI} />
+        <Button type='submit' disabled={isIndicatorsLoading} label='All' />
+      </div>
     </div>
   );
 };

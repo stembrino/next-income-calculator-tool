@@ -11,7 +11,6 @@ import Footer from './Footer/Footer';
 
 const FormArea: FC = () => {
   const { formStates, handleOnChange, handleOnClickCDI, handleOnClickSelic, handleSubmit } = useFormArea();
-  const { calculatorState } = useCalculator();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,7 +32,7 @@ const FormArea: FC = () => {
         </PercentageGroupLayout>
         <Footer onClickCDI={handleOnClickCDI} onClickSelic={handleOnClickSelic} />
       </FormAreaLayout>
-      <h1 className='text-white text-xl'>{JSON.stringify(calculatorState, null, 4)}</h1>
+      {/* <h1 className='text-white text-xl'>{JSON.stringify(calculatorState, null, 4)}</h1> */}
     </form>
   );
 };
