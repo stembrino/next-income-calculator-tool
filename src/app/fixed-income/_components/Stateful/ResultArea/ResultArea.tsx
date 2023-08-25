@@ -12,7 +12,6 @@ const ResultArea: FC = () => {
   const selicConfig: Info[] = [
     { id: "1", ellipseColor: "bg-black", label: "Initial Value", value: calculatorState.selic.initialValue },
     { id: "2", label: "Gross Result", value: calculatorState.selic.finalValue, ellipseColor: "bg-red-400" },
-    { id: "3", label: "Impostos", value: 30000 }
   ]
 
   return (

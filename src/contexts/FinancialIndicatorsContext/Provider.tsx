@@ -13,7 +13,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateCDI = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);
     try {
-      const cdi = await getApi(APIRoutes.CDI);
+      const cdi = (await getApi(APIRoutes.CDI)) as number;
       setCDI(cdi)
     } catch {
       return false;
@@ -26,7 +26,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateSelic = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);
     try {
-      const selic = await getApi(APIRoutes.SELIC);
+      const selic = (await getApi(APIRoutes.SELIC)) as number;
       console.log("🚀 ~ updateSelic ~ selic:", selic)
       setSelic(selic)
     } catch {
@@ -40,7 +40,7 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   const updateGovSaving = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);
     try {
-      const govSaving = await getApi(APIRoutes.GOV_SAVING);
+      const govSaving = (await getApi(APIRoutes.GOV_SAVING)) as number;
       setGovSaving(govSaving)
     } catch {
       return false;
