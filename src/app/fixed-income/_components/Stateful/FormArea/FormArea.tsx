@@ -4,10 +4,9 @@ import { LiaPiggyBankSolid } from 'react-icons/lia';
 import PercentageGroupLayout from '../../Stateless/Inputs/PercentageInput/PercentageGroupLayout/PercentageGroupLayout';
 import PercentageInput from '../../Stateless/Inputs/PercentageInput/PercentageInput';
 import CurrencyInput from '../../Stateless/Inputs/CurrencyInput/CurrencyInput';
-import MonthInput from '../../Stateless/Inputs/MonthInput/MonthInput';
-import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 import { useFormArea } from './hooks/useFormArea';
 import Footer from './Footer/Footer';
+import DateSelector from './DateSelector/DateSelector';
 
 const FormArea: FC = () => {
   const { formStates, handleOnChange, handleOnClickCDI, handleOnClickSelic, handleSubmit } = useFormArea();
@@ -23,8 +22,8 @@ const FormArea: FC = () => {
             label='Initial Value'
             onChange={handleOnChange}
             value={formStates.initialValue} />
-          <MonthInput name='period' label='Number of months' value={formStates.period} id='test' onChange={handleOnChange} />
         </div>
+        <DateSelector value={formStates.period} onSelectChange={handleOnChange} />
         <PercentageGroupLayout>
           {/* TODO: reset indicators text button */}
           <PercentageInput label='CDI Percentage' value={formStates.cdiPercentage} id='test' onChange={() => { }} />
@@ -32,7 +31,6 @@ const FormArea: FC = () => {
         </PercentageGroupLayout>
         <Footer onClickCDI={handleOnClickCDI} onClickSelic={handleOnClickSelic} />
       </FormAreaLayout>
-      {/* <h1 className='text-white text-xl'>{JSON.stringify(calculatorState, null, 4)}</h1> */}
     </form>
   );
 };
