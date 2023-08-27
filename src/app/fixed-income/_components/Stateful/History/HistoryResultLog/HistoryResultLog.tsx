@@ -5,11 +5,11 @@ import HistoryLogItem from './HistoryLogItem/HistoryLogItem';
 const HistoryResultLog: FC = () => {
   const { calculatorState } = useCalculator();
 
-  const HistoryLog = calculatorState.logs.map((log) => <HistoryLogItem key={crypto.randomUUID()} result={log} />);
+  const HistoryLog = calculatorState.logs.map((log, i) => <HistoryLogItem key={crypto.randomUUID()} number={i + 1} log={log} />);
   return (
-    <div>
+    <ul className='flex flex-col gap-4'>
       {HistoryLog}
-    </div>
+    </ul>
   );
 };
 

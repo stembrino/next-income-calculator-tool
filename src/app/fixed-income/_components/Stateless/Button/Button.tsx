@@ -13,7 +13,7 @@ type ButtonProps = {
 }
 
 const variants = tv({
-  base: " disabled:bg-gray-300 rounded-full",
+  base: "disabled:bg-gray-300 rounded-full",
   variants: {
     variant: {
       primary: "bg-zinc-700 hover:bg-zinc-600 active:bg-zinc-900 text-white",
@@ -21,8 +21,8 @@ const variants = tv({
       outlined: "bg-transparent border border-zinc-700 hover:bg-zinc-700 hover:text-white active:bg-zinc-900"
     },
     size: {
-      small: "text-sm px-3 py-1",
-      medium: "text-base px-6 py-2 "
+      small: "text-xs py-1 px-2 sm:text-sm sm:px-3 sm:py-1",
+      medium: "text-base px-2 sm:px-6 sm:py-2 "
     }
   },
   defaultVariants: {
