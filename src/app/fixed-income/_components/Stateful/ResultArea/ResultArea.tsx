@@ -6,10 +6,6 @@ import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 
 const ResultArea: FC = () => {
   const { calculatorState } = useCalculator();
-  const formattedCurrency = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
 
   const selicConfig: Info[] = [
     { id: "2", ellipseColor: "bg-black", label: "Initial value", value: calculatorState.selic.initialValue },

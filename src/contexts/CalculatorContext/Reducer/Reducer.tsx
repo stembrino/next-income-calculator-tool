@@ -1,26 +1,51 @@
 import { calculateCdi, calculateSelic } from "./reducerHelper";
 
-type Indicators = "cdi" | "selic";
+type Indicators = "cdi" | "selic"
 
-type ActionTypes = Indicators | "all";
-
-export type CalculationResultState = Record<Indicators, { finalValue: number, initialValue: number, period: number, result: number }>
+type ActionTypes = Indicators | "all" | "cleanLogs";
 
 type Payload = { initialValue: number, period: number, financialIndicators: { cdi?: number, selic?: number } }
 
-export type CalculatorAction = { type: ActionTypes, payload: Payload }
+export type Calculation = { finalValue: number, initialValue: number, period: number, result: number }
+
+export type ResultLog = Calculation & { type: string }
+
+export type CalculationResultState = { cdi: Calculation, selic: Calculation, logs: ResultLog[] }
+
+export type CalculatorAction = { type: ActionTypes, payload?: Payload }
+
+
 
 export function reducer(state: CalculationResultState, action: CalculatorAction): CalculationResultState {
+  let newResult: any = null;
+  let logs: ResultLog[] = [];
+
   switch (action.type) {
     case "cdi":
-      return { ...state, cdi: calculateCdi(action) }
+      newResult = calculateCdi(action);
+      logs = [{ ...newResult, type: "cdi" }, ...state.logs]
+
+      return { ...state, cdi: newResult, logs }
     case "selic":
-      return { ...state, selic: calculateSelic(action) }
+      newResult = calculateSelic(action);
+      logs = [{ ...newResult, type: "selic" }, ...state.logs as any[]]
+
+      return { ...state, selic: newResult, logs }
     case "all":
-      return {
+      newResult = {
         cdi: calculateCdi(action),
         selic: calculateSelic(action)
       }
+      logs = [
+        { ...newResult.cdi, type: "cdi" },
+        { ...newResult.selic, type: "selic" },
+        ...state.logs
+      ]
+
+      return { ...newResult, logs }
+    case "cleanLogs":
+
+      return { ...state, logs: [] }
     default: return state;
   }
 }

@@ -1,7 +1,7 @@
 import { calculateCompoundInterestRate } from "../financialCalculations";
-import { CalculatorAction } from "./Reducer";
+import { Calculation, CalculatorAction } from "./Reducer";
 
-export function calculateCdi(action: CalculatorAction) {
+export function calculateCdi(action: CalculatorAction): Calculation {
   const { initialValue, financialIndicators, period } = action.payload;
   const cdiFinalValue = calculateCompoundInterestRate({
     initialValue: initialValue,
