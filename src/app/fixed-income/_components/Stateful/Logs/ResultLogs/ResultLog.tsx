@@ -1,6 +1,6 @@
 import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 import React, { FC } from 'react';
-import HistoryLogItem from './HistoryLogItem/HistoryLogItem';
+import HistoryLogItem from './LogItem/LogItem';
 
 const HistoryResultLog: FC = () => {
   const { calculatorState } = useCalculator();

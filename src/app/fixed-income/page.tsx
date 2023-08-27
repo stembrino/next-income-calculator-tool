@@ -2,7 +2,7 @@ import { CalculatorArea } from './_components/Stateful/ResultArea'
 import { FinancialIndicatorsProvider } from '@/contexts/FinancialIndicatorsContext/Provider'
 import { FormArea } from './_components/Stateful/FormArea'
 import { CalculatorProvider } from '@/contexts/CalculatorContext/Provider'
-import History from './_components/Stateful/History/History'
+import Logs from './_components/Stateful/Logs/Logs'
 
 export default function FixedIncome() {
   return (
@@ -12,7 +12,7 @@ export default function FixedIncome() {
           <div className='grid grid-cols-1 lg:grid-cols-[1fr,1fr] w-full gap-8 box-border px-4 py-6 items-start'>
             <FormArea />
             <CalculatorArea />
-            <History />
+            <Logs />
           </div>
         </CalculatorProvider>
       </FinancialIndicatorsProvider>

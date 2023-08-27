@@ -1,5 +1,4 @@
-import React, { FC, ReactNode } from 'react';
-import CurrencyInputLib from 'react-currency-input-field';
+import React, { FC, ReactNode, useRef } from 'react';
 
 
 type InputProps = {
@@ -12,9 +11,18 @@ type InputProps = {
 }
 
 const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, name, onChange }) => {
-  const handleOnChange = (value?: string) => {
-    if (!value) return;
-    const valueAsNumber = Number(value);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const formatter = Intl.NumberFormat("pt-BR", {
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })
+
+  const handleOnChange = () => {
+    if (!inputRef.current) return;
+    const value = inputRef.current.value.replace(/\./g, '');
+    const extractedNumbers = value.match(/\d+/g);
+    const valueAsNumber = Number(extractedNumbers);
     onChange({ value: valueAsNumber, name });
   }
 
@@ -22,18 +30,20 @@ const CurrencyInput: FC<InputProps> = ({ id, value, label, icon, name, onChange 
     <div className='flex flex-col gap-2 border-b-2 border-gray-300 w-full'>
       <label htmlFor={id} className='font-semibold text-sm'>{label}</label>
       <div className='flex items-center'>
-        {icon}
-        <CurrencyInputLib
-          allowDecimals={false}
-          name={name}
-          intlConfig={{ locale: 'pt-Br', currency: 'BRL' }}
-          id={id}
-          value={value}
-          className='w-full px-3'
-          placeholder="Please enter a number"
-          decimalsLimit={4}
-          onValueChange={handleOnChange}
-        />
+        <span>{icon}</span>
+        <div className='flex relative w-full'>
+          <span className='absolute ps-1'>R$</span>
+          <input
+            type='text'
+            ref={inputRef}
+            name={name}
+            id={id}
+            value={formatter.format(value)}
+            className='w-full pe-3 ps-7'
+            placeholder="Please enter a number"
+            onChange={handleOnChange}
+          />
+        </div>
       </div>
     </div>
   );

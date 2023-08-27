@@ -1,13 +1,13 @@
 "use client"
-import React, { FC, useEffect } from 'react';
-import HistoryResultLog from './HistoryResultLog/HistoryResultLog';
+import React, { FC } from 'react';
 import Header from './Header/Header';
+import HistoryResultLog from './ResultLogs/ResultLog';
 
 interface HistoryProps {
 
 }
 
-const History: FC<HistoryProps> = ({ }) => {
+const Logs: FC<HistoryProps> = ({ }) => {
 
   return (
     <div className='bg-white rounded-xl p-6 box-border flex flex-col gap-6'>
@@ -17,4 +17,4 @@ const History: FC<HistoryProps> = ({ }) => {
   );
 };
 
-export default History;
+export default Logs;
