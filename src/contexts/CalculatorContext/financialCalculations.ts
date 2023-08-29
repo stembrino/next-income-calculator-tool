@@ -13,8 +13,9 @@ type CalculateParams = {
 export const calculateCompoundInterestRate = ({ financialIndicator: i, initialValue: C, period: t, percentage }: CalculateParams): number => {
   if (!i) throw new Error("calculateCompoundInterestRate ~ calculateCompoundInterestRate:financialIndicator was not provided.");
   if (!percentage) throw new Error("calculateCompoundInterestRate ~ percentage was not provided.");
-  console.log("🚀 ~ calculateCompoundInterestRate ~ 1 + i * percentage:", percentage)
 
+  percentage = percentage / 100
+  i = i * percentage;
   const M = C * Math.pow(1 + i, t);
 
   return M;
