@@ -26,8 +26,8 @@ const FormArea: FC = () => {
         <DateSelector value={formStates.period} onSelectChange={handleOnChange} />
         <PercentageGroupLayout>
           {/* TODO: reset indicators text button */}
-          <PercentageInput label='CDI Percentage' value={formStates.cdiPercentage} id='test' onChange={() => { }} />
-          <PercentageInput label='Selic Percentage' value={formStates.selicPercentage} id='test' onChange={() => { }} />
+          <PercentageInput name='cdiPercentage' label='CDI Percentage' value={formStates.cdiPercentage} id='test' onChange={handleOnChange} />
+          <PercentageInput name='selicPercentage' label='Selic Percentage' value={formStates.selicPercentage} id='test' onChange={handleOnChange} />
         </PercentageGroupLayout>
         <Footer onClickCDI={handleOnClickCDI} onClickSelic={handleOnClickSelic} />
       </FormAreaLayout>

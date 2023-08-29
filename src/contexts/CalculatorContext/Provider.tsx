@@ -8,8 +8,8 @@ import { CalculationResultState, reducer } from './Reducer/Reducer';
 
 export const CalculatorProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const initialValue: CalculationResultState = {
-    cdi: { finalValue: 0, initialValue: 0, period: 0, result: 0 },
-    selic: { finalValue: 0, initialValue: 0, period: 0, result: 0 },
+    cdi: { finalValue: 0, initialValue: 0, period: 0, result: 0, percentage: 0 },
+    selic: { finalValue: 0, initialValue: 0, period: 0, result: 0, percentage: 0 },
     logs: []
   };
   const [calculatorState, calculatorDispatch] = useReducer(reducer, initialValue);

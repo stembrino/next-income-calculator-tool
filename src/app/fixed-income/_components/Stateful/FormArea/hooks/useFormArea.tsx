@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useCalculator } from "@/contexts/CalculatorContext/useCalculator";
 import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
 import { FinanceForm } from '../types';
+import { ActionTypes } from '@/contexts/CalculatorContext/Reducer/Reducer';
 
 export const useFormArea = () => {
   const { calculatorDispatch } = useCalculator();
@@ -14,17 +15,30 @@ export const useFormArea = () => {
 
   })
 
-  useEffect(() => {
-    if (!selic || !cdi || !govSaving) return;
-
+  const calculatorDispatchByType = (type: ActionTypes) => {
     calculatorDispatch({
-      type: "all", payload: {
-        initialValue: formStates.initialValue, period: formStates.period, financialIndicators: {
-          cdi: indicatorRatesByMonth().cdi,
-          selic: indicatorRatesByMonth().selic
+      type,
+      payload: {
+        initialValue: formStates.initialValue,
+        period: formStates.period,
+        indicators: {
+          cdi: {
+            value: indicatorRatesByMonth().cdi,
+            percentage: formStates.cdiPercentage
+          },
+          selic: {
+            value: indicatorRatesByMonth().selic,
+            percentage: formStates.selicPercentage
+          }
         }
       }
     })
+  }
+
+  useEffect(() => {
+    if (!selic || !cdi || !govSaving) return;
+
+    calculatorDispatchByType("all");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selic, cdi, govSaving]);
 
@@ -38,34 +52,16 @@ export const useFormArea = () => {
   }
 
   const handleOnClickSelic = () => {
-    calculatorDispatch({
-      type: "selic", payload: {
-        initialValue: formStates.initialValue,
-        period: formStates.period, financialIndicators: { selic: indicatorRatesByMonth().selic }
-      }
-    })
+    calculatorDispatchByType("selic");
   }
 
   const handleOnClickCDI = () => {
-    calculatorDispatch({
-      type: "cdi", payload: {
-        initialValue: formStates.initialValue,
-        period: formStates.period, financialIndicators: { cdi: indicatorRatesByMonth().cdi }
-      }
-    })
+    calculatorDispatchByType("cdi");
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const selicRate = indicatorRatesByMonth().selic;
-    if (!selicRate) return;
-
-    calculatorDispatch({
-      type: "all", payload: {
-        initialValue: formStates.initialValue, period: formStates.period,
-        financialIndicators: { cdi: indicatorRatesByMonth().cdi, selic: indicatorRatesByMonth().selic }
-      }
-    })
+    calculatorDispatchByType("all");
   }
 
   return {

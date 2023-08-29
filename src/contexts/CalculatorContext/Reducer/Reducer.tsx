@@ -2,17 +2,30 @@ import { calculateCdi, calculateSelic } from "./reducerHelper";
 
 type Indicators = "cdi" | "selic"
 
-type ActionTypes = Indicators | "all" | "cleanLogs";
+export type ActionTypes = Indicators | "all" | "cleanLogs";
 
-type Payload = { initialValue: number, period: number, financialIndicators: { cdi?: number, selic?: number } }
+type Payload = {
+  initialValue: number,
+  period: number,
+  indicators: {
+    cdi: {
+      value: number,
+      percentage: number
+    },
+    selic: {
+      value: number,
+      percentage: number
+    }
+  }
+}
 
-export type Calculation = { finalValue: number, initialValue: number, period: number, result: number }
+export type Calculation = { finalValue: number, initialValue: number, period: number, result: number, percentage: number }
 
 export type ResultLog = Calculation & { type: string }
 
 export type CalculationResultState = { cdi: Calculation, selic: Calculation, logs: ResultLog[] }
 
-export type CalculatorAction = { type: ActionTypes, payload?: Payload }
+export type CalculatorAction = { type: ActionTypes, payload: Payload }
 
 
 

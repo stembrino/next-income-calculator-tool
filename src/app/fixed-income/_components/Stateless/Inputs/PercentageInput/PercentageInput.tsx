@@ -6,16 +6,17 @@ type PercentageInputProps = {
   id: string;
   label: string;
   value: number;
-  onChange: (value: number) => void;
+  name: string;
+  onChange: ({ name, value }: { name: string; value: number }) => void;
 }
 
-const PercentageInput: FC<PercentageInputProps> = ({ id, value, label, onChange }) => {
+const PercentageInput: FC<PercentageInputProps> = ({ id, name, value, label, onChange }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleOnChange = () => {
     if (!inputRef.current) return;
 
-    onChange(Number(inputRef.current.value));
+    onChange({ name, value: Number(inputRef.current.value) });
   }
 
   return (

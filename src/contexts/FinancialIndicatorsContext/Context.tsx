@@ -10,9 +10,9 @@ export type FinancialIndicatorsContextType = {
   updateGovSaving: () => Promise<boolean>;
   updateAllIndicators: () => Promise<boolean>;
   indicatorRatesByMonth: () => {
-    selic?: number;
-    cdi?: number;
-    govSaving?: number;
+    selic: number;
+    cdi: number;
+    govSaving: number;
   };
 };
 
