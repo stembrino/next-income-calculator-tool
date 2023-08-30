@@ -62,15 +62,6 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     return true;
   }
 
-  const indicatorRatesByMonth = () => {
-    return {
-      selic: selic && selic / 12,
-      cdi: cdi && cdi / 12,
-      govSaving: govSaving && govSaving / 12
-    }
-
-  }
-
   useEffect(() => {
     updateAllIndicators();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,7 +76,6 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     updateSelic,
     updateGovSaving,
     updateAllIndicators,
-    indicatorRatesByMonth
   };
 
   return (
