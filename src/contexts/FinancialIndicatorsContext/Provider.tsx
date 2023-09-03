@@ -27,7 +27,6 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     setIsIndicatorsLoading(true);
     try {
       const selic = (await getApi(APIRoutes.SELIC)) as number;
-      console.log("🚀 ~ updateSelic ~ selic:", selic)
       setSelic(selic)
     } catch {
       return false;
