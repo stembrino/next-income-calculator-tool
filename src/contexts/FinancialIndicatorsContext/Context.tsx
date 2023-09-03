@@ -1,19 +1,22 @@
 import { createContext } from 'react';
 
+type IndicatorsDatesType = {
+  aa: number | null,
+  am: number | null,
+  ad: number | null
+}
+
+export type Indicators = {
+  cdi: IndicatorsDatesType,
+  selic: IndicatorsDatesType,
+}
+
+
 export type FinancialIndicatorsContextType = {
-  govSaving?: number;
-  cdi?: number;
-  selic?: number;
   isIndicatorsLoading: boolean;
+  indicators: Indicators,
   updateCDI: () => Promise<boolean>;
   updateSelic: () => Promise<boolean>;
-  updateGovSaving: () => Promise<boolean>;
   updateAllIndicators: () => Promise<boolean>;
-  // indicatorRatesByMonth: () => {
-  //   selic: number;
-  //   cdi: number;
-  //   govSaving: number;
-  // };
-};
-
+}
 export const FinancialIndicatorsContext = createContext<FinancialIndicatorsContextType | undefined>(undefined);

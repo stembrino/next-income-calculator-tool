@@ -1,15 +1,24 @@
 "use client"
-import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
+import Button from '@/app/fixed-income/_components/Stateless/Button/Button';
 import React, { FC } from 'react';
+import { usePeriodSelector } from './hooks/usePeriodSelector';
 
 const Header: FC = () => {
-  const { cdi, selic } = useFinancialIndicators();
-  const selicPercentage = selic ? selic * 100 : "";
-  const cdiPercentage = cdi ? cdi * 100 : "";
+  const { btnLabel, calculatePeriodSelected, labels } = usePeriodSelector();
+
+  const handleOnClick = () => {
+    calculatePeriodSelected();
+  }
+
   return (
-    <header className='text-white py-2 px-4 flex gap-6'>
-      <span>Selic: {`${selicPercentage}%`}</span>
-      <span>CDI: {`${cdiPercentage}%`}</span>
+    <header className='px-4 py-2 text-white flex flex-col gap-2'>
+      <div className='flex gap-6 items-center'>
+        <span>Selic ({btnLabel}): {`${labels.selic}%`}</span>
+        <span>CDI ({btnLabel}): {`${labels.cdi}%`}</span>
+      </div>
+      <div className='w-min'>
+        <Button onClick={handleOnClick} label={btnLabel} variant='outlined-white' size='small' />
+      </div>
     </header>
   );
 };
