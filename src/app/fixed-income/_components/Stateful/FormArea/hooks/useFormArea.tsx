@@ -6,7 +6,7 @@ import { ActionTypes } from '@/contexts/CalculatorContext/Reducer/Reducer';
 
 export const useFormArea = () => {
   const { calculatorDispatch } = useCalculator();
-  const { selic, cdi, govSaving } = useFinancialIndicators();
+  const { indicators } = useFinancialIndicators();
   const [formStates, setFormStates] = useState<FinanceForm>({
     initialValue: 1000,
     period: 12,
@@ -23,11 +23,11 @@ export const useFormArea = () => {
         period: formStates.period,
         indicators: {
           cdi: {
-            value: cdi as number / 12,
+            value: indicators.cdi.am as number / 12,
             percentage: formStates.cdiPercentage
           },
           selic: {
-            value: selic as number / 12,
+            value: indicators.selic.am as number / 12,
             percentage: formStates.selicPercentage
           }
         }
@@ -36,11 +36,11 @@ export const useFormArea = () => {
   }
 
   useEffect(() => {
-    if (!selic || !cdi || !govSaving) return;
+    if (!indicators.selic.am || !indicators.cdi.am) return;
 
     calculatorDispatchByType("all");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selic, cdi, govSaving]);
+  }, [indicators]);
 
   const handleOnChange = ({ name, value }: { name: string, value: number }) => {
     setFormStates((state) => {

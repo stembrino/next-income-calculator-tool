@@ -2,19 +2,36 @@
 
 import { APIRoutes, getApi } from '@/service/request';
 import React, { useState, useEffect, ReactNode } from 'react';
-import { FinancialIndicatorsContext, FinancialIndicatorsContextType } from './Context';
+import { FinancialIndicatorsContext, FinancialIndicatorsContextType, Indicators } from './Context';
+import { calculateIndicatorByDay, calculateIndicatorByMonth } from './helper';
 
 export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [cdi, setCDI] = useState<number>();
-  const [selic, setSelic] = useState<number>();
-  const [govSaving, setGovSaving] = useState<number>();
+  const initialValueIndicators: Indicators = {
+    cdi: {
+      aa: null,
+      ad: null,
+      am: null
+    },
+    selic: {
+      aa: null,
+      ad: null,
+      am: null
+    }
+  }
   const [isIndicatorsLoading, setIsIndicatorsLoading] = useState(true);
+  const [indicators, setIndicators] = useState(initialValueIndicators)
 
   const updateCDI = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);
     try {
       const cdi = (await getApi(APIRoutes.CDI)) as number;
-      setCDI(cdi)
+      setIndicators((state) => ({
+        ...state, cdi: {
+          aa: cdi,
+          ad: calculateIndicatorByDay(cdi),
+          am: calculateIndicatorByMonth(cdi)
+        }
+      }));
     } catch {
       return false;
     } finally {
@@ -27,7 +44,13 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     setIsIndicatorsLoading(true);
     try {
       const selic = (await getApi(APIRoutes.SELIC)) as number;
-      setSelic(selic)
+      setIndicators((state) => ({
+        ...state, selic: {
+          aa: selic,
+          ad: calculateIndicatorByDay(selic),
+          am: calculateIndicatorByMonth(selic)
+        }
+      }));
     } catch {
       return false;
     } finally {
@@ -36,23 +59,11 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     return true;
   };
 
-  const updateGovSaving = async (): Promise<boolean> => {
-    setIsIndicatorsLoading(true);
-    try {
-      const govSaving = (await getApi(APIRoutes.GOV_SAVING)) as number;
-      setGovSaving(govSaving)
-    } catch {
-      return false;
-    } finally {
-      setIsIndicatorsLoading(false);
-    }
-    return true;
-  };
 
   const updateAllIndicators = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);
     try {
-      await Promise.all([updateCDI(), updateSelic(), updateGovSaving()]);
+      await Promise.all([updateCDI(), updateSelic()]);
     } catch {
       return false
     } finally {
@@ -67,13 +78,10 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   const contextValue: FinancialIndicatorsContextType = {
-    cdi,
-    govSaving,
-    selic,
     isIndicatorsLoading,
+    indicators,
     updateCDI,
     updateSelic,
-    updateGovSaving,
     updateAllIndicators,
   };
 
