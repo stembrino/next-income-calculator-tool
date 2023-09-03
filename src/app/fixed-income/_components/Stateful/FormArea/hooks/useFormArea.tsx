@@ -6,7 +6,7 @@ import { ActionTypes } from '@/contexts/CalculatorContext/Reducer/Reducer';
 
 export const useFormArea = () => {
   const { calculatorDispatch } = useCalculator();
-  const { indicatorRatesByMonth, selic, cdi, govSaving } = useFinancialIndicators();
+  const { selic, cdi, govSaving } = useFinancialIndicators();
   const [formStates, setFormStates] = useState<FinanceForm>({
     initialValue: 1000,
     period: 12,
@@ -23,11 +23,11 @@ export const useFormArea = () => {
         period: formStates.period,
         indicators: {
           cdi: {
-            value: indicatorRatesByMonth().cdi,
+            value: cdi as number / 12,
             percentage: formStates.cdiPercentage
           },
           selic: {
-            value: indicatorRatesByMonth().selic,
+            value: selic as number / 12,
             percentage: formStates.selicPercentage
           }
         }

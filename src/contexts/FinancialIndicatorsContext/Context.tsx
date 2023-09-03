@@ -9,11 +9,11 @@ export type FinancialIndicatorsContextType = {
   updateSelic: () => Promise<boolean>;
   updateGovSaving: () => Promise<boolean>;
   updateAllIndicators: () => Promise<boolean>;
-  indicatorRatesByMonth: () => {
-    selic: number;
-    cdi: number;
-    govSaving: number;
-  };
+  // indicatorRatesByMonth: () => {
+  //   selic: number;
+  //   cdi: number;
+  //   govSaving: number;
+  // };
 };
 
 export const FinancialIndicatorsContext = createContext<FinancialIndicatorsContextType | undefined>(undefined);

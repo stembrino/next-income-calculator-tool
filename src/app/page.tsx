@@ -1,3 +1,5 @@
+import { FinancialIndicatorsProvider } from "@/contexts/FinancialIndicatorsContext/Provider";
+
 export default function Home() {
 
   return (
@@ -5,5 +7,6 @@ export default function Home() {
       HOME
       {/* <CalculatorArea /> */}
     </main>
+
   )
 }
