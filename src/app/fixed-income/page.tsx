@@ -8,9 +8,11 @@ export default function FixedIncome() {
     <main className="flex flex-col items-center min-h-screen">
       <CalculatorProvider>
         <div className='grid grid-cols-1 lg:grid-cols-[1fr,1fr] w-full gap-8 box-border px-4 py-6 items-start'>
-          <FormArea />
+          <div className='flex flex-col gap-5'>
+            <FormArea />
+            <Logs />
+          </div>
           <CalculatorArea />
-          <Logs />
         </div>
       </CalculatorProvider>
     </main>

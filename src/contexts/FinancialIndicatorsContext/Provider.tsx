@@ -19,7 +19,8 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
     }
   }
   const [isIndicatorsLoading, setIsIndicatorsLoading] = useState(true);
-  const [indicators, setIndicators] = useState(initialValueIndicators)
+  const [indicators, setIndicators] = useState(initialValueIndicators);
+
 
   const updateCDI = async (): Promise<boolean> => {
     setIsIndicatorsLoading(true);

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from './_components/Header/Header'
 import { FinancialIndicatorsProvider } from '@/contexts/FinancialIndicatorsContext/Provider'
+import { PeriodProvider } from '@/contexts/PeriodContext/Provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <FinancialIndicatorsProvider>
-          <Header />
-          {children}
+          <PeriodProvider>
+            <Header />
+            {children}
+          </PeriodProvider>
         </FinancialIndicatorsProvider>
 
       </body>
