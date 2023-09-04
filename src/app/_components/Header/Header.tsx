@@ -11,13 +11,13 @@ const Header: FC = () => {
   }
 
   return (
-    <header className='px-4 py-2 text-white flex flex-col gap-2'>
+    <header className='px-4 pt-4 pb-2 text-white flex flex-col gap-2'>
       <div className='flex gap-6 items-center'>
+        <div className='w-min'>
+          <Button onClick={handleOnClick} label={period.label} variant='outlined-white' size='small' />
+        </div>
         <span>Selic ({period.key}): {`${labels.selic}%`}</span>
         <span>CDI ({period.key}): {`${labels.cdi}%`}</span>
-      </div>
-      <div className='w-min'>
-        <Button onClick={handleOnClick} label={period.label} variant='outlined-white' size='small' />
       </div>
     </header>
   );
