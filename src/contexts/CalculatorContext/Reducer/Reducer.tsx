@@ -1,22 +1,25 @@
+import { PeriodKeys } from "@/contexts/PeriodContext/Reducer";
 import { calculateCdi, calculateSelic } from "./reducerHelper";
+import { IndicatorsDatesType } from "@/contexts/FinancialIndicatorsContext/Context";
 
 type Indicators = "cdi" | "selic"
 
 export type ActionTypes = Indicators | "all" | "cleanLogs";
 
 type Payload = {
-  initialValue: number,
-  period: number,
+  initialValue: number;
+  period: number;
+  timeUnit: PeriodKeys;
   indicators: {
     cdi: {
-      value: number,
-      percentage: number
-    },
-    selic: {
-      value: number,
-      percentage: number
+      unitValues: IndicatorsDatesType;
+      percentage: number;
     }
-  }
+    selic: {
+      unitValues: IndicatorsDatesType;
+      percentage: number;
+    };
+  };
 }
 
 export type Calculation = { finalValue: number, initialValue: number, period: number, result: number, percentage: number }

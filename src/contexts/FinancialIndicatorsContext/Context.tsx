@@ -1,10 +1,12 @@
 import { createContext } from 'react';
+import { PeriodKeys } from '../PeriodContext/Reducer';
 
-type IndicatorsDatesType = {
-  aa: number | null,
-  am: number | null,
-  ad: number | null
-}
+// export type IndicatorsDatesType = {
+//   aa: number | null,
+//   am: number | null,
+//   ad: number | null
+// }
+export type IndicatorsDatesType = Record<PeriodKeys, number | null>
 
 export type Indicators = {
   cdi: IndicatorsDatesType,

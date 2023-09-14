@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const usePeriodSelector = () => {
   const { period, periodDispatch } = usePeriod();
-  let periodIndex = useRef(2);
+  let periodIndex = useRef(1);
   const { indicators } = useFinancialIndicators();
   const [labels, setLabels] = useState({ cdi: "", selic: "" });
 
@@ -19,33 +19,33 @@ export const usePeriodSelector = () => {
       case 0:
         periodDispatch({ type: "a.d." });
         setLabels((state) => {
-          if (!indicators.cdi.ad || !indicators.selic.ad) return state;
+          if (!indicators.cdi["a.d."] || !indicators.selic["a.d."]) return state;
           return {
             ...state,
-            cdi: String((indicators.cdi.ad * 100).toFixed(6)),
-            selic: String((indicators.selic.ad * 100).toFixed(6))
+            cdi: String((indicators.cdi["a.d."] * 100).toFixed(6)),
+            selic: String((indicators.selic["a.d."] * 100).toFixed(6))
           }
         })
         break;
       case 1:
         periodDispatch({ type: "a.m." })
         setLabels((state) => {
-          if (!indicators.cdi.am || !indicators.selic.am) return state;
+          if (!indicators.cdi["a.m."] || !indicators.selic["a.m."]) return state;
           return {
             ...state,
-            cdi: String((indicators.cdi.am * 100).toFixed(4)),
-            selic: String((indicators.selic.am * 100).toFixed(4))
+            cdi: String((indicators.cdi["a.m."] * 100).toFixed(4)),
+            selic: String((indicators.selic["a.m."] * 100).toFixed(4))
           }
         });
         break;
       default:
         periodDispatch({ type: "a.a." })
         setLabels((state) => {
-          if (!indicators.cdi.aa || !indicators.selic.aa) return state;
+          if (!indicators.cdi["a.a."] || !indicators.selic["a.a."]) return state;
           return {
             ...state,
-            cdi: String(indicators.cdi.aa * 100),
-            selic: String(indicators.selic.aa * 100)
+            cdi: String(indicators.cdi["a.a."] * 100),
+            selic: String(indicators.selic["a.a."] * 100)
           }
         })
         break;

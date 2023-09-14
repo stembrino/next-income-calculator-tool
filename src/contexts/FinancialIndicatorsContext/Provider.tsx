@@ -8,14 +8,14 @@ import { calculateIndicatorByDay, calculateIndicatorByMonth } from './helper';
 export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const initialValueIndicators: Indicators = {
     cdi: {
-      aa: null,
-      ad: null,
-      am: null
+      "a.a.": null,
+      "a.d.": null,
+      "a.m.": null
     },
     selic: {
-      aa: null,
-      ad: null,
-      am: null
+      "a.a.": null,
+      "a.d.": null,
+      "a.m.": null
     }
   }
   const [isIndicatorsLoading, setIsIndicatorsLoading] = useState(true);
@@ -28,9 +28,9 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
       const cdi = (await getApi(APIRoutes.CDI)) as number;
       setIndicators((state) => ({
         ...state, cdi: {
-          aa: cdi,
-          ad: calculateIndicatorByDay(cdi),
-          am: calculateIndicatorByMonth(cdi)
+          "a.a.": cdi,
+          "a.d.": calculateIndicatorByDay(cdi),
+          "a.m.": calculateIndicatorByMonth(cdi)
         }
       }));
     } catch {
@@ -47,9 +47,9 @@ export const FinancialIndicatorsProvider: React.FC<{ children: ReactNode }> = ({
       const selic = (await getApi(APIRoutes.SELIC)) as number;
       setIndicators((state) => ({
         ...state, selic: {
-          aa: selic,
-          ad: calculateIndicatorByDay(selic),
-          am: calculateIndicatorByMonth(selic)
+          "a.a.": selic,
+          "a.d.": calculateIndicatorByDay(selic),
+          "a.m.": calculateIndicatorByMonth(selic)
         }
       }));
     } catch {

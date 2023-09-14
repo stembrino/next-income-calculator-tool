@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { PeriodAction } from "./Reducer";
+import { PeriodAction, PeriodKeys } from "./Reducer";
 
 
 export type PeriodState = {
-  key: string,
+  key: PeriodKeys,
   label: string
 }
 

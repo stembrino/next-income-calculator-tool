@@ -1,6 +1,6 @@
 import { PeriodState } from "./Context";
 
-type PeriodKeys = "a.m." | "a.d." | "a.a.";
+export type PeriodKeys = "a.m." | "a.d." | "a.a.";
 
 export type PeriodAction = { type: PeriodKeys };
 

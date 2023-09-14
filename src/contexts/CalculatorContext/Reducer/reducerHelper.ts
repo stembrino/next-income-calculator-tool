@@ -1,18 +1,17 @@
-import { calculateCompoundInterestRate } from "../financialCalculations";
+import { calculateCompoundInterestRate } from "./financialCalculations";
 import { Calculation, CalculatorAction } from "./Reducer";
 
 function calculateResult(initialValue: number, finalValue: number) {
-  //TODO: calculate the the taxes and rates
   const grossResult = finalValue - initialValue
 
   return { grossResult: grossResult };
 }
 
 export function calculateCdi(action: CalculatorAction): Calculation {
-  const { initialValue, indicators, period } = action.payload;
-  const cdiFinalValue = calculateCompoundInterestRate({
+  const { initialValue, indicators, period, timeUnit } = action.payload;
+  const cdiFinalValue = calculateCompoundInterestRate(timeUnit, {
     initialValue: initialValue,
-    financialIndicator: indicators.cdi.value,
+    unitValues: indicators.cdi.unitValues,
     period: period,
     percentage: indicators.cdi.percentage
   })
@@ -27,10 +26,10 @@ export function calculateCdi(action: CalculatorAction): Calculation {
 }
 
 export function calculateSelic(action: CalculatorAction): Calculation {
-  const { initialValue, indicators, period } = action.payload;
-  const selicFinalValue = calculateCompoundInterestRate({
+  const { initialValue, indicators, period, timeUnit } = action.payload;
+  const selicFinalValue = calculateCompoundInterestRate(timeUnit, {
     initialValue: initialValue,
-    financialIndicator: indicators.selic.value,
+    unitValues: indicators.selic.unitValues,
     period: period,
     percentage: indicators.selic.percentage
   })

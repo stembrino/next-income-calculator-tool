@@ -3,10 +3,12 @@ import { useCalculator } from "@/contexts/CalculatorContext/useCalculator";
 import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
 import { FinanceForm } from '../types';
 import { ActionTypes } from '@/contexts/CalculatorContext/Reducer/Reducer';
+import { usePeriod } from '@/contexts/PeriodContext/usePeriod';
 
 export const useFormArea = () => {
   const { calculatorDispatch } = useCalculator();
   const { indicators } = useFinancialIndicators();
+  const { period } = usePeriod()
   const [formStates, setFormStates] = useState<FinanceForm>({
     initialValue: 1000,
     period: 12,
@@ -21,13 +23,14 @@ export const useFormArea = () => {
       payload: {
         initialValue: formStates.initialValue,
         period: formStates.period,
+        timeUnit: period.key,
         indicators: {
           cdi: {
-            value: indicators.cdi.am as number / 12,
+            unitValues: indicators.cdi,
             percentage: formStates.cdiPercentage
           },
           selic: {
-            value: indicators.selic.am as number / 12,
+            unitValues: indicators.selic,
             percentage: formStates.selicPercentage
           }
         }
@@ -36,7 +39,8 @@ export const useFormArea = () => {
   }
 
   useEffect(() => {
-    if (!indicators.selic.am || !indicators.cdi.am) return;
+    const allIndicators = Object.values(indicators).flatMap((i) => [i["a.a."], i["a.d."], i["a.m."]])
+    if (allIndicators.some((indicator) => !indicator)) return;
 
     calculatorDispatchByType("all");
     // eslint-disable-next-line react-hooks/exhaustive-deps
