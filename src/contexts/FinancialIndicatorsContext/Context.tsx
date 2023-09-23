@@ -6,19 +6,20 @@ import { PeriodKeys } from '../PeriodContext/Reducer';
 //   am: number | null,
 //   ad: number | null
 // }
-export type IndicatorsDatesType = Record<PeriodKeys, number | null>
+export type IndicatorsDatesType = Record<PeriodKeys, number | null>;
 
 export type Indicators = {
-  cdi: IndicatorsDatesType,
-  selic: IndicatorsDatesType,
-}
-
+  cdi: IndicatorsDatesType;
+  selic: IndicatorsDatesType;
+};
 
 export type FinancialIndicatorsContextType = {
   isIndicatorsLoading: boolean;
-  indicators: Indicators,
+  indicators: Indicators;
   updateCDI: () => Promise<boolean>;
   updateSelic: () => Promise<boolean>;
   updateAllIndicators: () => Promise<boolean>;
-}
-export const FinancialIndicatorsContext = createContext<FinancialIndicatorsContextType | undefined>(undefined);
+};
+export const FinancialIndicatorsContext = createContext<FinancialIndicatorsContextType | undefined>(
+  undefined,
+);

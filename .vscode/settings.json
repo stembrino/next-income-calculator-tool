@@ -1,8 +1,5 @@
 {
-  "cSpell.words": [
-    "conteudo",
-    "Selic"
-  ],
+  "cSpell.words": ["conteudo", "Selic"],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
