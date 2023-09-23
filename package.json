@@ -1,7 +1,12 @@
 {
   "name": "next-income-calculator-tool",
+  "author": "Fabio Ribeiro de Carvalho",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stembrino/next-income-calculator-tool.git"
+  },
   "scripts": {
     "dev": "next dev --port 5000",
     "build": "next build",
