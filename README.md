@@ -4,4 +4,4 @@ This is a project that calculates the financial gain taking into account the cur
 - Deadline: day | month | year
 - Amount to be invested
 - Current rate: CDI & Selic
-- Taxation: IR (not implemented)
+- Tax action: IR (not implemented)

@@ -7,7 +7,7 @@ type Indicators = 'cdi' | 'selic';
 
 export type ActionTypes = Indicators | 'all' | 'cleanLogs';
 
-type Payload = {
+export type CalculatePayload = {
   initialValue: number;
   period: number;
   timeUnit: PeriodKeys;
@@ -35,7 +35,7 @@ export type ResultLog = Calculation & { type: string };
 
 export type CalculationResultState = { cdi: Calculation; selic: Calculation; logs: ResultLog[] };
 
-export type CalculatorAction = { type: ActionTypes; payload: Payload };
+export type CalculatorAction = { type: ActionTypes; payload?: CalculatePayload };
 
 export function reducer(
   state: CalculationResultState,

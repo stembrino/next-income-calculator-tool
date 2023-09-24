@@ -1,5 +1,5 @@
 import { calculateCompoundInterestRate } from './financialCalculations';
-import { Calculation, CalculatorAction } from './Reducer';
+import { CalculatePayload, Calculation, CalculatorAction } from './Reducer';
 
 function calculateResult(initialValue: number, finalValue: number) {
   const grossResult = finalValue - initialValue;
@@ -8,7 +8,7 @@ function calculateResult(initialValue: number, finalValue: number) {
 }
 
 export function calculateCdi(action: CalculatorAction): Calculation {
-  const { initialValue, indicators, period, timeUnit } = action.payload;
+  const { initialValue, indicators, period, timeUnit } = action.payload as CalculatePayload;
   const cdiFinalValue = calculateCompoundInterestRate(timeUnit, {
     initialValue: initialValue,
     unitValues: indicators.cdi.unitValues,
@@ -17,7 +17,7 @@ export function calculateCdi(action: CalculatorAction): Calculation {
   });
 
   return {
-    initialValue: action.payload.initialValue,
+    initialValue: action.payload!.initialValue,
     finalValue: cdiFinalValue,
     period: period,
     result: calculateResult(initialValue, cdiFinalValue).grossResult,
@@ -26,7 +26,7 @@ export function calculateCdi(action: CalculatorAction): Calculation {
 }
 
 export function calculateSelic(action: CalculatorAction): Calculation {
-  const { initialValue, indicators, period, timeUnit } = action.payload;
+  const { initialValue, indicators, period, timeUnit } = action.payload as CalculatePayload;
   const selicFinalValue = calculateCompoundInterestRate(timeUnit, {
     initialValue: initialValue,
     unitValues: indicators.selic.unitValues,
@@ -35,7 +35,7 @@ export function calculateSelic(action: CalculatorAction): Calculation {
   });
 
   return {
-    initialValue: action.payload.initialValue,
+    initialValue: action.payload!.initialValue,
     finalValue: selicFinalValue,
     period: period,
     result: calculateResult(initialValue, selicFinalValue).grossResult,
