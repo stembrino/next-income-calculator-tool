@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useCalculator } from '@/contexts/CalculatorContext/useCalculator';
 import { useFinancialIndicators } from '@/contexts/FinancialIndicatorsContext/useFinancialIndicators';
 import { FinanceForm } from '../types';
@@ -36,18 +36,6 @@ export const useFormArea = () => {
       },
     });
   };
-
-  useEffect(() => {
-    const allIndicators = Object.values(indicators).flatMap((i) => [
-      i['a.a.'],
-      i['a.d.'],
-      i['a.m.'],
-    ]);
-    if (allIndicators.some((indicator) => !indicator)) return;
-
-    calculatorDispatchByType('all');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indicators]);
 
   const handleOnChange = ({ name, value }: { name: string; value: number }) => {
     setFormStates((state) => {
