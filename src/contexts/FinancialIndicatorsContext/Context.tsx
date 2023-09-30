@@ -1,11 +1,6 @@
 import { createContext } from 'react';
 import { PeriodKeys } from '../PeriodContext/Reducer';
 
-// export type IndicatorsDatesType = {
-//   aa: number | null,
-//   am: number | null,
-//   ad: number | null
-// }
 export type IndicatorsDatesType = Record<PeriodKeys, number | null>;
 
 export type Indicators = {
