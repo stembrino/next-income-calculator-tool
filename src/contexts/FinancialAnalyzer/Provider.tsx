@@ -8,7 +8,9 @@ import {
   GenerateAnalyzeParam,
 } from './Context';
 
-export const PeriodProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const FinancialAnalyzerProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [financialAnalyzer, setFinancialAnalyzer] = useState<FinancialAnalyzer>({
     firstValue: null,
     secondValue: null,
@@ -16,6 +18,7 @@ export const PeriodProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   });
 
   const generateAnalyze = ({ firstValue, secondValue }: GenerateAnalyzeParam) => {
+    //TODO Crate a reducer to do it
     //TODO: generate the result for comparator
     const financialAnalyzer: FinancialAnalyzer = {
       firstValue: { ...firstValue },

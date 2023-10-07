@@ -1,17 +1,17 @@
 import { createContext } from 'react';
-import { CalculationResultState } from '../CalculatorContext/Reducer/Reducer';
+import { ResultLog } from '../CalculatorContext/Reducer/Reducer';
 
 export type FinancialAnalyzer = {
-  firstValue: CalculationResultState | null;
-  secondValue: CalculationResultState | null;
+  firstValue: ResultLog | null;
+  secondValue: ResultLog | null;
   comparator: {
     diff: number | null;
   };
 };
 
 export type GenerateAnalyzeParam = {
-  firstValue: CalculationResultState;
-  secondValue: CalculationResultState;
+  firstValue: ResultLog;
+  secondValue: ResultLog;
 };
 
 export type FinancialAnalyzerContextType = {
